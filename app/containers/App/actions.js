@@ -20,7 +20,10 @@ export const { setNewest, setItem } = createActions({
 export function fetchNewestList() {
   return (dispatch) => {
     dispatch(setNewest({ isFetching: true }));
-    api.getNewestIDs().then(ids => dispatch(setNewest({ ids })));
+
+    api.getNewestIDs()
+      .then(ids => dispatch(setNewest({ ids })))
+      .then(() => dispatch(fetchNextPage()));
   };
 }
 

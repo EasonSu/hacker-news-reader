@@ -8,8 +8,10 @@ import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 
 const AppWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   max-width: 800px;
-  min-height: 100%;
+  height: 100%;
   margin: 0 auto;
   padding: 0 16px;
 `;
