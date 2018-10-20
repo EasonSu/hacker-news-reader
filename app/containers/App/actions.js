@@ -11,9 +11,8 @@ export const { setNewest, setItem } = createActions({
     return { ...data, isFetching };
   },
 
-  [SET_ITEM]: item => ({
-    id: item.id,
-    item,
+  [SET_ITEM]: (id, item) => ({
+    item: item || { id, isBroken: true }, // Some item fetched from HN could be null
   }),
 });
 
@@ -41,10 +40,7 @@ export function fetchNextPage() {
     const nextIDs = ids.slice(offset, nextOffset);
     const tasks = nextIDs.map((id) => { // eslint-disable-line arrow-body-style
       return api.getItem(id)
-        .then((item) => {
-          dispatch(setItem(item));
-          return item;
-        });
+        .then(item => dispatch(setItem(id, item)));
     });
 
     Promise.all(tasks)
