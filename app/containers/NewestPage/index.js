@@ -1,14 +1,24 @@
 import React, { PureComponent } from 'react';
 import types from 'prop-types';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { fetchNewestList } from '../App/actions';
+import StoryList from 'components/StoryList';
 
+import { fetchNewestList, fetchNextPage } from '../App/actions';
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: 100%;
+`;
 
 class Newest extends PureComponent {
   static propTypes = {
     onComponentLoad: types.func.isRequired,
+    onNearBottom: types.func.isRequired,
+    stories: types.array.isRequired,
     newest: types.shape({
-      ids: types.array.isRequired,
       isFetching: types.bool.isRequired,
     }),
   }
@@ -18,14 +28,12 @@ class Newest extends PureComponent {
   }
 
   render() {
-    const { ids, isFetching } = this.props.newest;
+    const { stories, newest: { isFetching } } = this.props;
     return (
-      <div>
+      <PageWrapper>
         {`isFetching: ${isFetching}`}
-        <ol>
-          {ids.map(id => <li key={id}>{id}</li>)}
-        </ol>
-      </div>
+        <StoryList stories={stories} onNearBottom={this.props.onNearBottom} />
+      </PageWrapper>
     );
   }
 }
@@ -36,11 +44,20 @@ function mapDispatchToProps(dispatch) {
     onComponentLoad: () => {
       dispatch(fetchNewestList());
     },
+
+    onNearBottom: () => {
+      dispatch(fetchNextPage());
+    },
   };
 }
 
-const mapStateToProps = state => ({
-  newest: state.app.newest,
-});
+const mapStateToProps = ({ app: { newest, itemDict } }) => {
+  const storyIDs = newest.ids.slice(0, newest.availableIndex + 1);
+  const stories = storyIDs.map(id => itemDict[id]);
+  return {
+    newest,
+    stories,
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Newest);

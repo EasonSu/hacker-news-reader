@@ -30,11 +30,11 @@ export default handleActions({
     },
   }),
 
-  [SET_ITEM]: (state, { payload: { id, item } }) => {
+  [SET_ITEM]: (state, { payload: { item } }) => {
     const { ids, availableIndex: prevIndex } = state.newest;
     const itemDict = {
       ...state.itemDict,
-      [id]: item,
+      [item.id]: item,
     };
 
     const availableIndex = findAvailableIndex(prevIndex, ids, itemDict);
