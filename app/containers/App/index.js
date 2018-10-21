@@ -6,14 +6,18 @@ import { Switch, Route } from 'react-router-dom';
 import NewestPage from 'containers/NewestPage';
 import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
+import { layout } from 'style/constants';
 
 const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 800px;
   height: 100%;
+`;
+
+const Main = styled.div`
+  max-width: ${layout.appMaxWidth};
+  width: 100%;
   margin: 0 auto;
-  padding: 0 16px;
 `;
 
 export default function App() {
@@ -26,10 +30,12 @@ export default function App() {
         <meta name="description" content="A Hacker News reader with offline supporting" />
       </Helmet>
       <Header />
-      <Switch>
-        <Route exact path="/" component={NewestPage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
+      <Main>
+        <Switch>
+          <Route exact path="/" component={NewestPage} />
+          <Route path="" component={NotFoundPage} />
+        </Switch>
+      </Main>
     </AppWrapper>
   );
 }

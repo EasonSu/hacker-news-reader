@@ -1,37 +1,55 @@
 import React from 'react';
 import types from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-const fadeIn = keyframes`
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+import TimeAgo from 'components/TimeAgo';
+import Card from './Card';
+
+const Link = styled.a`
+  text-decoration: none;
+  color: #000;
+  &:visited {
+    color: #7c7c7c;
   }
 `;
-
-const Li = styled.li`
-  margin-bottom: 12px;
-  padding: 12px;
-  animation: ${fadeIn} 1s cubic-bezier(.19, 1, .22, 1)
+const Info = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: .875em;
+`;
+const Author = styled.span`
+  color: #bb5535;
 `;
 
 const Item = (props) => {
-  const { story: { title, url } } = props;
+  const {
+    no,
+    story: {
+      title,
+      url,
+      by,
+      time,
+    },
+  } = props;
+
   return (
-    <Li>
-      <a href={url}>{title}</a>
-    </Li>
+    <Card data-no={no}>
+      <Link href={url}>{title}</Link>
+      <Info>
+        <Author>{`by ${by}`}</Author>
+        <TimeAgo timestamp={time} />
+      </Info>
+    </Card>
   );
 };
 
 Item.propTypes = {
+  no: types.number.isRequired,
   story: types.shape({
     title: types.string.isRequired,
     url: types.string,
+    by: types.string.isRequired,
+    time: types.number.isRequired,
   }),
 };
 

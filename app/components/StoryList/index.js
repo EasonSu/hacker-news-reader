@@ -8,7 +8,8 @@ import Item from './Item';
 const List = styled.ol`
   height: 100%;
   overflow: scroll;
-  padding-bottom: 120px;
+  padding: 0 1em 120px;
+  list-style: none;
 `;
 
 
@@ -21,6 +22,7 @@ class Story extends PureComponent {
     stories: types.array.isRequired,
     distanceThreshold: types.number,
     onNearBottom: types.func.isRequired,
+    children: types.node,
   }
 
   constructor() {
@@ -60,7 +62,11 @@ class Story extends PureComponent {
 
     return (
       <List onWheel={this.handleWheel}>
-        {stories.map(story => <Item key={story.id} story={story} />)}
+        {stories.map((story, index) => {
+          const no = index + 1;
+          return <Item key={story.id} no={no} story={story} />;
+        })}
+        {this.props.children}
       </List>
     );
   }
