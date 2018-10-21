@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import types from 'prop-types';
 import styled from 'styled-components';
 import throttle from 'lodash/throttle';
+import getViewportHeight from 'utils/getViewportHeight';
 
 import Item from './Item';
 
@@ -16,9 +17,11 @@ const List = styled.ol`
 `;
 
 
+const properThreshold = getViewportHeight() * 0.3;
+
 class Story extends PureComponent {
   static defaultProps = {
-    distanceThreshold: 300,
+    distanceThreshold: properThreshold || 250,
   }
 
   static propTypes = {
