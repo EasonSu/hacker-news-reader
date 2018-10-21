@@ -11,6 +11,7 @@ const PageWrapper = styled.div`
   flex-direction: column;
   flex: 1;
   max-height: 100%;
+  background-color: #f6f8fa;
 `;
 
 class Newest extends PureComponent {
