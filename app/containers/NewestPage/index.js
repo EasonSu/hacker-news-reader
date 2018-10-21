@@ -3,6 +3,7 @@ import types from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import StoryList from 'components/StoryList';
+import LoadingIndicator from 'components/LoadingIndicator';
 
 import { fetchNewestList, fetchNextPage } from '../App/actions';
 
@@ -12,6 +13,12 @@ const PageWrapper = styled.div`
   flex: 1;
   max-height: 100%;
   background-color: #f6f8fa;
+`;
+
+const LoadingStatus = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 class Newest extends PureComponent {
@@ -32,8 +39,11 @@ class Newest extends PureComponent {
     const { stories, newest: { isFetching } } = this.props;
     return (
       <PageWrapper>
-        {`isFetching: ${isFetching}`}
-        <StoryList stories={stories} onNearBottom={this.props.onNearBottom} />
+        <StoryList stories={stories} onNearBottom={this.props.onNearBottom}>
+          <LoadingStatus>
+            {isFetching && <LoadingIndicator />}
+          </LoadingStatus>
+        </StoryList>
       </PageWrapper>
     );
   }

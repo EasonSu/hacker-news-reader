@@ -21,6 +21,7 @@ class Story extends PureComponent {
     stories: types.array.isRequired,
     distanceThreshold: types.number,
     onNearBottom: types.func.isRequired,
+    children: types.node,
   }
 
   constructor() {
@@ -61,6 +62,7 @@ class Story extends PureComponent {
     return (
       <List onWheel={this.handleWheel}>
         {stories.map(story => <Item key={story.id} story={story} />)}
+        {this.props.children}
       </List>
     );
   }
