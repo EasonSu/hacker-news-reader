@@ -13,7 +13,7 @@ setup(app, {
 
 const host = process.env.HOST || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = host || 'localhost';
-const port = parseInt(process.env.PORT || '3000', 10);
+const port = parseInt(process.env.PORT || '3886', 10);
 
 // Start server
 app.listen(port, host, (err) => {
