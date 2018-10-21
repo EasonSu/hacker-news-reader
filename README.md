@@ -27,3 +27,7 @@
 - ✓ Support infinite scrolling
 - ✓ Support offline capability
   - Only enable on demo(production) mode due to Service Worker is not compatible with webpack-dev-server
+
+## Screenshot
+
+<img width="978" src="https://user-images.githubusercontent.com/17420811/47268570-43395e80-d585-11e8-88fb-35a6f8c6c394.png">
