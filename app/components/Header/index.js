@@ -6,10 +6,11 @@ import Logo from './Logo';
 
 const Wrapper = styled.div`
   background-color: #f60;
+  box-shadow: 0 0 6px 1px #999;
 `;
 const HeaderContainer = styled.header`
   display: flex;
-  max-width: ${layout.appMaxWidth};
+  max-width: ${layout.contentMaxWidth};
   margin: 0 auto;
 `;
 const Title = styled.h1`

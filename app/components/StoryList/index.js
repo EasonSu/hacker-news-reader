@@ -6,8 +6,11 @@ import throttle from 'lodash/throttle';
 import Item from './Item';
 
 const List = styled.ol`
+  position: relative;
+  width: 100%;
   height: 100%;
   overflow: scroll;
+  margin-top: 1em;
   padding: 0 1em 120px;
   list-style: none;
 `;
