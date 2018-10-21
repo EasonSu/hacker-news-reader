@@ -13,7 +13,7 @@ const fadeIn = keyframes`
 
 const Card = styled.li`
   position: relative;
-  margin-bottom: 12px;
+  margin-bottom: 1em;
   padding: .75em 1.75em;
   box-shadow: 0 0 0 1px #e1e4e8 inset, 0 2px 4px rgba(0,0,0,.15);
   border-radius: 3px;
@@ -22,10 +22,10 @@ const Card = styled.li`
   &:before {
     content: '#' attr(data-no);
     position: absolute;
-    left: .5em;
+    right: .5em;
     top: 0.1em;
     font-size: .875em;
-    color: #767e89;
+    color: #b9c1ca;
   }
 `;
 

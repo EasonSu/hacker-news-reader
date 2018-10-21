@@ -2,17 +2,23 @@ import React from 'react';
 import types from 'prop-types';
 import styled from 'styled-components';
 
+import TimeAgo from 'components/TimeAgo';
 import Card from './Card';
 
 const Link = styled.a`
   text-decoration: none;
   color: #000;
   &:visited {
-    color: #8e6e6e;
+    color: #7c7c7c;
   }
 `;
 const Info = styled.div`
+  display: flex;
+  justify-content: space-between;
   font-size: .875em;
+`;
+const Author = styled.span`
+  color: #bb5535;
 `;
 
 const Item = (props) => {
@@ -22,6 +28,7 @@ const Item = (props) => {
       title,
       url,
       by,
+      time,
     },
   } = props;
 
@@ -29,7 +36,8 @@ const Item = (props) => {
     <Card data-no={no}>
       <Link href={url}>{title}</Link>
       <Info>
-        <span>{`by ${by}`}</span>
+        <Author>{`by ${by}`}</Author>
+        <TimeAgo timestamp={time} />
       </Info>
     </Card>
   );
@@ -41,6 +49,7 @@ Item.propTypes = {
     title: types.string.isRequired,
     url: types.string,
     by: types.string.isRequired,
+    time: types.number.isRequired,
   }),
 };
 
