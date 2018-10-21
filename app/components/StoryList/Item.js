@@ -1,37 +1,46 @@
 import React from 'react';
 import types from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-const fadeIn = keyframes`
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+import Card from './Card';
+
+const Link = styled.a`
+  text-decoration: none;
+  color: #000;
+  &:visited {
+    color: #8e6e6e;
   }
 `;
-
-const Li = styled.li`
-  margin-bottom: 12px;
-  padding: 12px;
-  animation: ${fadeIn} 1s cubic-bezier(.19, 1, .22, 1)
+const Info = styled.div`
+  font-size: .875em;
 `;
 
 const Item = (props) => {
-  const { story: { title, url } } = props;
+  const {
+    no,
+    story: {
+      title,
+      url,
+      by,
+    },
+  } = props;
+
   return (
-    <Li>
-      <a href={url}>{title}</a>
-    </Li>
+    <Card data-no={no}>
+      <Link href={url}>{title}</Link>
+      <Info>
+        <span>{`by ${by}`}</span>
+      </Info>
+    </Card>
   );
 };
 
 Item.propTypes = {
+  no: types.number.isRequired,
   story: types.shape({
     title: types.string.isRequired,
     url: types.string,
+    by: types.string.isRequired,
   }),
 };
 

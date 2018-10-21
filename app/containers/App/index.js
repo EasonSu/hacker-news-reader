@@ -18,7 +18,6 @@ const Main = styled.div`
   max-width: ${layout.appMaxWidth};
   width: 100%;
   margin: 0 auto;
-  padding: 0 16px;
 `;
 
 export default function App() {
