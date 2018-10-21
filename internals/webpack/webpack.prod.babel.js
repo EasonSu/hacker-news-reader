@@ -50,6 +50,9 @@ module.exports = require('./webpack.base.babel')({
         additional: ['*.chunk.js'],
       },
       safeToUseOptionalCaches: true,
+      ServiceWorker: {
+        entry: './internals/webpack/serviceWorkerInjection.js',
+      },
     }),
 
     new HashedModuleIdsPlugin({

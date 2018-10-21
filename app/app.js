@@ -47,7 +47,7 @@ if (module.hot) {
 
 render();
 
-// Install ServiceWorker and AppCache in the end since
+// Install ServiceWorker and AppCache in the end
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 }
