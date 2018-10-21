@@ -2,20 +2,26 @@ import React, { PureComponent } from 'react';
 import types from 'prop-types';
 import styled from 'styled-components';
 import throttle from 'lodash/throttle';
+import getViewportHeight from 'utils/getViewportHeight';
 
 import Item from './Item';
 
 const List = styled.ol`
+  position: relative;
+  width: 100%;
   height: 100%;
   overflow: scroll;
+  margin-top: 1em;
   padding: 0 1em 120px;
   list-style: none;
 `;
 
 
+const properThreshold = getViewportHeight() * 0.3;
+
 class Story extends PureComponent {
   static defaultProps = {
-    distanceThreshold: 300,
+    distanceThreshold: properThreshold || 250,
   }
 
   static propTypes = {

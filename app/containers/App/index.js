@@ -6,7 +6,6 @@ import { Switch, Route } from 'react-router-dom';
 import NewestPage from 'containers/NewestPage';
 import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
-import { layout } from 'style/constants';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -15,8 +14,8 @@ const AppWrapper = styled.div`
 `;
 
 const Main = styled.div`
-  max-width: ${layout.appMaxWidth};
   width: 100%;
+  height: 100%;
   margin: 0 auto;
 `;
 

@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { layout } from 'style/constants';
 
 const fadeIn = keyframes`
   from {
@@ -13,7 +14,8 @@ const fadeIn = keyframes`
 
 const Card = styled.li`
   position: relative;
-  margin-bottom: 1em;
+  max-width: ${layout.contentMaxWidth};
+  margin: 0 auto 1em;
   padding: .75em 1.75em;
   box-shadow: 0 0 0 1px #e1e4e8 inset, 0 2px 4px rgba(0,0,0,.15);
   border-radius: 3px;

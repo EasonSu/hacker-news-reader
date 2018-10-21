@@ -1,3 +1,3 @@
 export const layout = {
-  appMaxWidth: '800px',
+  contentMaxWidth: '800px',
 };
