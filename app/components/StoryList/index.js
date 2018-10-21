@@ -8,12 +8,13 @@ import Item from './Item';
 const List = styled.ol`
   height: 100%;
   overflow: scroll;
+  padding-bottom: 120px;
 `;
 
 
 class Story extends PureComponent {
   static defaultProps = {
-    distanceThreshold: 400,
+    distanceThreshold: 300,
   }
 
   static propTypes = {
@@ -24,8 +25,22 @@ class Story extends PureComponent {
 
   constructor() {
     super();
+    this.state = {
+      appearedLength: 0,
+    };
     this.handleWheel = this.handleWheel.bind(this);
   }
+
+  componentDidUpdate() {
+    const { appearedLength } = this.state;
+    if (this.props.stories.length > appearedLength) {
+      this.throttleIncreaseAppearance();
+    }
+  }
+
+  throttleIncreaseAppearance = throttle(() => {
+    this.setState({ appearedLength: this.state.appearedLength + 1 });
+  }, 75)
 
   handleWheel(e) {
     this.throttleHandleWheel(e.currentTarget);
@@ -41,7 +56,8 @@ class Story extends PureComponent {
   }, 30)
 
   render() {
-    const { stories } = this.props;
+    const stories = this.props.stories.slice(0, this.state.appearedLength);
+
     return (
       <List onWheel={this.handleWheel}>
         {stories.map(story => <Item key={story.id} story={story} />)}
